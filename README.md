@@ -1,2 +1,2 @@
 # InterStellClaudo
-Un projet trop embicieux
+Un projet trop ambicieux
