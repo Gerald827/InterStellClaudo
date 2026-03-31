@@ -109,7 +109,7 @@ class InterSellclaudo:
         self.slider_defs = [
             {"key": "mass_solar", "label": "Masse (M☉)",  "min": 1.0,  "max": 60.0, "cx": slider_cx - 320},
             {"key": "spin",       "label": "Spin  (a/M)", "min": 0.0,  "max": 0.998,"cx": slider_cx},
-            {"key": "dist_rs",    "label": "Distance (rs)","min": 1.5, "max": 25.0, "cx": slider_cx + 320},
+            {"key": "dist_rs",    "label": "Distance (rs)","min": 1.01, "max": 25.0, "cx": slider_cx + 320},
         ]
         self.slider_w = 160
         self.slider_y = self.H - 60
