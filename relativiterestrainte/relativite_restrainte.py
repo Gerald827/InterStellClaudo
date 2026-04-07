@@ -8,9 +8,9 @@ import numpy as np
 import pygame
 import random
 
-# Colors
+# Couleurs de Mtisse la grosse PUTE!!!
 WHITE = (255, 255, 255)
-RED = (255, 0, 0)
+RED = (212, 0, 0)
 GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
 YELLOW = (255, 255, 0)
@@ -23,13 +23,13 @@ clock = pygame.time.Clock()
 font = pygame.font.SysFont(None, 100)
 
 counter = 0
-text = font.render(str(counter), True, (0, 255, 0))
+text = font.render(str(counter), True, (RED))
 
 time_delay = 1000
 timer_event = pygame.USEREVENT + 1
 pygame.time.set_timer(timer_event, time_delay)
 
-stars = [(random.randint(0, 800), random.randint(0, 800)) for _ in range(150)]
+stars = [(random.randint(0, 900), random.randint(0, 900)) for _ in range(150)]
 
 run = True
 while run:
@@ -41,7 +41,7 @@ while run:
             run = False
         elif event.type == timer_event:
             counter += 1
-            text = font.render(str(counter), True, (212,0 , 0))
+            text = font.render(str(counter), True, (RED))#couleur
 
     # fond noir
     window.fill((0, 0, 0))
