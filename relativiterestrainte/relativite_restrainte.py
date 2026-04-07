@@ -2,11 +2,21 @@ import sys
 import math
 import random
 from turtle import width
+import numpy as np
 
 import pygame
 
+# Colors
+WHITE = (255, 255, 255)
+RED = (255, 0, 0)
+GREEN = (0, 255, 0)
+BLUE = (0, 0, 255)
+YELLOW = (255, 255, 0)
+BLACK = (0, 0, 0)
+GRAY = (200, 200, 200)
+
 pygame.init()
-window = pygame.display.set_mode((800, 800))
+window = pygame.display.set_mode((900, 900))
 clock = pygame.time.Clock()
 font = pygame.font.SysFont(None, 100)
 
@@ -20,6 +30,7 @@ pygame.time.set_timer(timer_event, time_delay)
 # main application loop
 run = True
 while run:
+    
     clock.tick(60)
 
     # event loop
