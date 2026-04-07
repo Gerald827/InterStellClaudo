@@ -9,7 +9,7 @@ pygame.init()
 window = pygame.display.set_mode((1100, 900))
 pygame.display.set_caption('pygame_window')
 
-run = True
+run = False
 while run:
     pygame.time.delay(60)
     print("test")
