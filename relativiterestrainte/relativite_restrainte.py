@@ -6,7 +6,7 @@ from turtle import width
 import pygame
 
 pygame.init()
-window = pygame.display.set_mode((200, 200))
+window = pygame.display.set_mode((800, 800))
 clock = pygame.time.Clock()
 font = pygame.font.SysFont(None, 100)
 
