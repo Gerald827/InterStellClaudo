@@ -8,7 +8,7 @@ import numpy as np
 import pygame
 import random
 
-# Couleurs de Mtisse la grosse PUTE!!!
+# Couleurs 
 WHITE = (255, 255, 255)
 RED = (212, 0, 0)
 GREEN = (0, 255, 0)
@@ -21,6 +21,8 @@ pygame.init()
 window = pygame.display.set_mode((900, 900))
 clock = pygame.time.Clock()
 font = pygame.font.SysFont(None, 100)
+
+celerite = 299792458  # m/s aka vitesse de la lumière
 
 counter = 0
 text = font.render(str(counter), True, (RED))
@@ -41,9 +43,8 @@ while run:
             run = False
         elif event.type == timer_event:
             counter += 1
-            text = font.render(str(counter), True, (RED))#couleur
-
-    # fond noir
+            text = font.render(str(counter), True, (RED))
+            
     window.fill((0, 0, 0))
 
     for star in stars:
@@ -52,6 +53,7 @@ while run:
     # afficher le compteur
     text_rect = text.get_rect(center=window.get_rect().center)
     window.blit(text, text_rect)
+    #jusqu'a la
 
     pygame.display.flip()
 
