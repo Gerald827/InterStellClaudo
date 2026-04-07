@@ -2,9 +2,6 @@ import sys
 import math
 import random
 from turtle import width
-# Source - https://stackoverflow.com/a/59944869
-# Posted by Rabbid76, modified by community. See post 'Timeline' for change history
-# Retrieved 2026-04-07, License - CC BY-SA 4.0
 
 import pygame
 
@@ -43,7 +40,6 @@ while run:
 
     # update the display
     pygame.display.flip()
-
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT: #pour quitter le jeu
