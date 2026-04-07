@@ -8,7 +8,7 @@ import numpy as np
 import pygame
 import random
 
-# Couleurs de Mtisse la grosse PUTE!!!
+# Couleurs de Matisse la grosse PUTE!!!
 WHITE = (255, 255, 255)
 RED = (212, 0, 0)
 GREEN = (0, 255, 0)
@@ -45,7 +45,7 @@ while run:
 
     # fond noir
     window.fill((0, 0, 0))
-
+    #étoils des années 39 - 45
     for star in stars:
         pygame.draw.circle(window, (255, 255, 255), star, 2)
 
@@ -53,6 +53,6 @@ while run:
     text_rect = text.get_rect(center=window.get_rect().center)
     window.blit(text, text_rect)
 
-    pygame.display.flip()
+    pygame.display.flip()#flip flop
 
-pygame.quit()
+pygame.quit()#Quitter
