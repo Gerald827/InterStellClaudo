@@ -9,10 +9,10 @@ pygame.init()
 window = pygame.display.set_mode((1100, 900))
 pygame.display.set_caption('pygame_window')
 
-run = False
+run = True
 while run:
     pygame.time.delay(60)
-    print("test")
+    print("matisse sers à rien")
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT: #pour quitter le jeu
