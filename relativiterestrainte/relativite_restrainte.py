@@ -18,7 +18,7 @@ DARK_GRAY = (30, 30, 30)
 LIGHT_GRAY = (100, 100, 100)
 
 pygame.init()
-window = pygame.display.set_mode((1200, 900))
+window = pygame.display.set_mode((1400, 1000))
 pygame.display.set_caption("Relativité Restreinte - Dilatation du Temps")
 clock = pygame.time.Clock()
 
@@ -43,6 +43,7 @@ accumulator2 = 0.0
 speed = 1.0
 speed2 = 1.0
 beta = 0.0  # v/c
+temps = 0.0  # v/c
 
 # Slider variables
 slider_y = 800
@@ -51,6 +52,14 @@ slider_x_max = 1050
 dragging = False
 min_beta = 0.0
 max_beta = 0.99
+
+# Slider variables 2
+slider_y2 = 900
+slider_x_min2 = 150
+slider_x_max2 = 1050
+dragging2 = False
+min_temps = 0.0
+max_temps = 1.0
 
 def format_time(c):
     total_sec = int(c)
@@ -120,7 +129,7 @@ def draw_analog_clock(center, color, total_seconds):
     # Center dot
     pygame.draw.circle(window, WHITE, center, 6)
 
-stars = [(random.randint(0, 1200), random.randint(0, 900)) for _ in range(200)]
+stars = [(random.randint(0, 1400), random.randint(0, 1000)) for _ in range(200)]
 
 run = True
 while run:
@@ -132,6 +141,11 @@ while run:
         gamma = 1 / math.sqrt(1 - beta**2)
     else:
         gamma = 1.0
+    if temps < 1.0:
+        gamma2 = temps
+    else:        
+        gamma2 = 1.0
+
     speed = 1.0  # Left clock normal speed
     speed2 = 1.0 / gamma  # Right clock dilated
     
@@ -150,6 +164,7 @@ while run:
 
     # Calculate slider knob position
     knob_x = slider_x_min + (beta - min_beta) / (max_beta - min_beta) * (slider_x_max - slider_x_min)
+    knob_x2 = slider_x_min2 + (temps - min_temps) / (max_temps - min_temps) * (slider_x_max2 - slider_x_min2)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -158,12 +173,19 @@ while run:
             if slider_y - 15 < event.pos[1] < slider_y + 15:
                 if knob_x - 12 < event.pos[0] < knob_x + 12:
                     dragging = True
+            elif slider_y2 - 15 < event.pos[1] < slider_y2 + 15:
+                if knob_x2 - 12 < event.pos[0] < knob_x2 + 12:
+                    dragging2 = True
         elif event.type == pygame.MOUSEBUTTONUP:
             dragging = False
+            dragging2 = False
         elif event.type == pygame.MOUSEMOTION:
             if dragging:
                 knob_x = max(slider_x_min, min(slider_x_max, event.pos[0]))
                 beta = min_beta + (knob_x - slider_x_min) / (slider_x_max - slider_x_min) * (max_beta - min_beta)
+            elif dragging2:
+                knob_x2 = max(slider_x_min2, min(slider_x_max2, event.pos[0]))
+                temps = min_temps + (knob_x2 - slider_x_min2) / (slider_x_max2 - slider_x_min2) * (max_temps - min_temps)
             
     # Background
     window.fill(BLACK)
@@ -180,13 +202,13 @@ while run:
     
     draw_analog_clock(left_clock_center, RED, counter)
     
-    left_time = format_time(counter)
+    left_time = format_time(counter) #timer de gauche temps réel
     left_time_text = big_font.render(left_time, True, RED)
     left_time_rect = left_time_text.get_rect(center=(300, 510))
     window.blit(left_time_text, left_time_rect)
     
     # Right clock section
-    right_label = label_font.render("Référentiel en mouvement", True, GREEN)
+    right_label = label_font.render("Référentiel en mouvement", True, GREEN) #timer de droite temps dilaté
     right_label_rect = right_label.get_rect(center=(900, 200))
     window.blit(right_label, right_label_rect)
     
@@ -206,23 +228,38 @@ while run:
     velocity_label = label_font.render(gamma_text, True, BLUE)
     velocity_rect = velocity_label.get_rect(center=(600, 650))
     window.blit(velocity_label, velocity_rect)
+
+    
+    # section changement de vitesse
+    velocity = temps * celerite
+    gamma_text = f"le décalage du temps par rapport au vrai temps est de {temps:.3f}"
+    velocity_label = label_font.render(gamma_text, True, BLUE)
+    velocity_rect = velocity_label.get_rect(center=(600, 700))
+    window.blit(velocity_label, velocity_rect)
     
     # Draw slider
     pygame.draw.line(window, LIGHT_GRAY, (slider_x_min, slider_y), (slider_x_max, slider_y), 3)
     pygame.draw.circle(window, BLUE, (int(knob_x), slider_y), 12)
     pygame.draw.circle(window, WHITE, (int(knob_x), slider_y), 8)
     
+    # Draw slider
+    pygame.draw.line(window, LIGHT_GRAY, (slider_x_min2, slider_y2), (slider_x_max2, slider_y2), 3)
+    pygame.draw.circle(window, BLUE, (int(knob_x2), slider_y2), 12)
+    pygame.draw.circle(window, WHITE, (int(knob_x2), slider_y2), 8)
+    
+
+    #pour afficher le text de changer la vitesse
+    info_slider = "Glisser pour ajuster la vitesse et le temps"
+    info = info_font.render(info_slider, True, LIGHT_GRAY)
+    info_rect = info.get_rect(center=(600, 750))
+    window.blit(info, info_rect)
+
+
     # Slider labels
     min_label = info_font.render("0 m/s", True, LIGHT_GRAY)
     max_label = info_font.render("0.99c", True, LIGHT_GRAY)
     window.blit(min_label, (slider_x_min - 30, slider_y + 20))
     window.blit(max_label, (slider_x_max - 40, slider_y + 20))
-    
-    # Info text at bottom
-    info_text = "Fait par Kenzo, Nolan, Julian, Matisse."
-    info = info_font.render(info_text, True, WHITE)
-    info_rect = info.get_rect(center=(600, 870))
-    window.blit(info, info_rect)
 
     pygame.display.flip()
 
