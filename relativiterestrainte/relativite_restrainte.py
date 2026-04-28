@@ -171,11 +171,7 @@ while run:
     # Draw stars
     for star in stars:
         pygame.draw.circle(window, WHITE, star, 1)
-    
-    # Top title
-    title = title_font.render("Relativité Restreinte - Dilatation du Temps", True, WHITE)
-    title_rect = title.get_rect(center=(600, 30))
-    window.blit(title, title_rect)
+
     
     # Left clock section
     left_label = label_font.render("Référentiel au repos", True, RED)
@@ -223,7 +219,7 @@ while run:
     window.blit(max_label, (slider_x_max - 40, slider_y + 20))
     
     # Info text at bottom
-    info_text = "Fait par Kenzo, Nolan, Julian et ClauClau"
+    info_text = "Fait par Kenzo, Nolan, Julian, Matisse."
     info = info_font.render(info_text, True, WHITE)
     info_rect = info.get_rect(center=(600, 870))
     window.blit(info, info_rect)
