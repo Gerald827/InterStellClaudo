@@ -224,7 +224,7 @@ while run:
     window.blit(max_label, (slider_x_max - 40, slider_y + 20))
     
     # Info text at bottom
-    info_text = "Fait par Kenzo, Nolan, Julian et ClauClau"
+    info_text = "Fait par Kenzo, Nolan, Julian et Matisse - 2026"
     info = info_font.render(info_text, True, WHITE)
     info_rect = info.get_rect(center=(600, 870))
     window.blit(info, info_rect)
