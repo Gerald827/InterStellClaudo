@@ -16,6 +16,7 @@ BLUE = (50, 150, 255)
 BLACK = (0, 0, 0)
 DARK_GRAY = (30, 30, 30)
 LIGHT_GRAY = (100, 100, 100)
+PURPLE = (150, 15, 150)
 
 pygame.init()
 window = pygame.display.set_mode((1200, 900))
